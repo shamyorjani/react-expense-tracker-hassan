@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface dataItems {
   id: number;
@@ -58,14 +58,14 @@ const ExpenseList = ({ data, onDelete }: Props) => {
               {selectCategory !== ""
                 ? data
                     .filter((item) => item.category === selectCategory)
-                    .map((item, index) => (
-                      <tr className="" key={index}>
+                    .map((item) => (
+                      <tr className="" key={item.id}>
                         <td>{item.description}</td>
                         <td>${item.amount}.00</td>
                         <td>{capitalizeString(item.category)}</td>
                         <td>
                           <button
-                            onClick={() => onDelete(index)}
+                            onClick={() => onDelete(item.id)}
                             className="btn btn-outline-danger"
                           >
                             Delete
@@ -75,7 +75,7 @@ const ExpenseList = ({ data, onDelete }: Props) => {
                     ))
                 : data
                     .filter((item) => item.category !== "")
-                    .map((item, index) => (
+                    .map((item) => (
                       <tr className="" key={item.id}>
                         <td>{item.description}</td>
                         <td>${item.amount}.00</td>
